@@ -4,7 +4,7 @@
     <div class="form">
       <input type="email" placeholder="email" />
       <input type="password" placeholder="password" />
-      <Button :loading="loading">Login</Button>
+      <Button class="btn" :loading="loading">Login</Button>
     </div>
   </div>
 </template>
@@ -53,6 +53,9 @@ export default {
         line-height: 28px;
         color: #000;
       }
+    }
+    .btn {
+      margin-top: 15px;
     }
   }
 }
