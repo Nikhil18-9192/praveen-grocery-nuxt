@@ -36,7 +36,11 @@ export default {
     font-size: 18px;
     line-height: 21px;
     .lds-ring {
-      display: inline-block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      margin: 0 auto;
       position: relative;
       width: 40px;
       height: 100%;
@@ -47,8 +51,8 @@ export default {
       position: absolute;
       width: 25px;
       height: 25px;
-      margin: 8px;
-      border: 4px solid #fff;
+      margin: 6px;
+      border: 3px solid #fff;
       border-radius: 50%;
       animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
       border-color: #fff transparent transparent transparent;

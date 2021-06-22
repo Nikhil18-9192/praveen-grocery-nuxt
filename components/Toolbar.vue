@@ -21,6 +21,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+
   p {
     font-size: 16px;
     line-height: 19px;

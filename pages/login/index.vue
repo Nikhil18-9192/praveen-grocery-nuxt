@@ -14,7 +14,7 @@ export default {
   name: 'LoginPage',
   data() {
     return {
-      loading: false,
+      loading: true,
     }
   },
 }
@@ -30,6 +30,7 @@ export default {
   align-items: center;
   flex-direction: column;
   padding: 0 30px;
+
   h4 {
     font-weight: 500;
     font-size: 18px;
@@ -47,8 +48,12 @@ export default {
       border-radius: 6px;
       padding: 15px 20px;
       background: #f7f7f7;
+      outline: none;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 28px;
       &::placeholder {
-        font-weight: bold;
+        font-weight: 700;
         font-size: 24px;
         line-height: 28px;
         color: #000;
