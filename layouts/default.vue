@@ -1,7 +1,8 @@
 <template>
   <div>
     <Toolbar />
-    <MenuButton />
+    <!-- <MenuButton /> -->
+    <Hamburger />
     <transition name="slide">
       <Menu v-if="menuState" />
     </transition>

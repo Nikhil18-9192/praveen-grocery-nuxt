@@ -14,7 +14,7 @@ export default {
   name: 'LoginPage',
   data() {
     return {
-      loading: true,
+      loading: false,
     }
   },
 }
