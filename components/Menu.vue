@@ -10,16 +10,27 @@
         {{ item.name }}
       </nuxt-link>
     </div>
+    <p @click="logout">Logout</p>
   </div>
 </template>
 
 <script>
+import Cookies from 'js-cookie'
 import { menuItems } from '@/utils'
 export default {
   name: 'MenuComponent',
   computed: {
     menuItems() {
       return menuItems
+    },
+  },
+  methods: {
+    logout() {
+      Cookies.remove('jwt')
+      this.$store.commit('SET_USER', false)
+      this.$store.commit('SET_JWT', false)
+      this.$router.push('/login')
+      this.$store.commit('toggleMenuState')
     },
   },
 }
@@ -51,6 +62,12 @@ export default {
         color: #ff5f5f;
       }
     }
+  }
+  p {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+    margin-bottom: 25px;
   }
 }
 </style>

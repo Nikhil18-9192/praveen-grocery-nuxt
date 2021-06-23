@@ -27,10 +27,12 @@ export const mutations = {
     SET_JWT: (state, token) => {
         state.jwt = token
     },
-
 }
 
 
 export const actions = {
-
+    async nuxtServerInit() {
+        const jwt = await Cookies.get('jwt')
+        console.log(jwt);
+    }
 }
