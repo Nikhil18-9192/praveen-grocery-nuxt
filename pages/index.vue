@@ -1,24 +1,27 @@
 <template>
   <div id="home-page">
-    <p>{{ user.user.username }}</p>
+    <InputSearch v-model="shops" />
+    <List class="list" :shops="shops" />
   </div>
 </template>
 
 <script>
+import Cookies from 'js-cookie'
 export default {
   name: 'HomePage',
-  mounted() {
-    console.log('user', this.$store.getters.getUser)
+  async asyncData({ $axios }) {
+    const jwt = await Cookies.get('jwt')
+    const shops = await $axios.$get('/shops', {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    })
+    return { shops }
   },
-  computed: {
-    user() {
-      return this.$store.getters.getUser
-    },
-  },
-  watch: {
-    user(val) {
-      console.log('test', val)
-    },
+  data() {
+    return {
+      shops: [],
+    }
   },
 }
 </script>
@@ -28,6 +31,9 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
-  padding-top: 70px;
+  padding: 90px 20px 0 20px;
+  .list {
+    margin-top: 36px;
+  }
 }
 </style>

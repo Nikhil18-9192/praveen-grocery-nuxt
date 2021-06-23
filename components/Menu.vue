@@ -10,7 +10,7 @@
         {{ item.name }}
       </nuxt-link>
     </div>
-    <p @click="logout">Logout</p>
+    <p v-if="jwt" @click="logout">Logout</p>
   </div>
 </template>
 
@@ -19,10 +19,18 @@ import Cookies from 'js-cookie'
 import { menuItems } from '@/utils'
 export default {
   name: 'MenuComponent',
+  data() {
+    return {
+      jwt: null,
+    }
+  },
   computed: {
     menuItems() {
       return menuItems
     },
+  },
+  mounted() {
+    this.jwt = Cookies.get('jwt')
   },
   methods: {
     logout() {
