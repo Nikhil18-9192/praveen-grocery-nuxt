@@ -2,20 +2,51 @@
   <div id="login">
     <h4>Login to continue</h4>
     <div class="form">
-      <input type="email" placeholder="email" />
-      <input type="password" placeholder="password" />
-      <Button class="btn" :loading="loading">Login</Button>
+      <input v-model="username" type="email" placeholder="email" />
+      <input v-model="password" type="password" placeholder="password" />
+      <Button class="btn" :loading="loading" @click.native="login"
+        >Login</Button
+      >
     </div>
   </div>
 </template>
 
 <script>
+import Cookies from 'js-cookie'
 export default {
   name: 'LoginPage',
   data() {
     return {
       loading: false,
+      username: '',
+      password: '',
     }
+  },
+
+  beforeCreate() {
+    const jwt = Cookies.get('jwt')
+    if (jwt) {
+      this.$router.push('/')
+    }
+  },
+  methods: {
+    async login() {
+      this.loading = true
+      try {
+        const res = await this.$axios.$post(`/auth/local`, {
+          identifier: this.username,
+          password: this.password,
+        })
+        this.$store.commit('SET_USER', res)
+        this.$store.commit('SET_JWT', res.jwt)
+        Cookies.set('jwt', res.jwt, { expires: 365 })
+        this.$axios.setToken(res.jwt, 'bearer')
+        this.$router.push('/')
+      } catch (error) {
+        this.$toast.error('Login Failed')
+        this.loading = false
+      }
+    },
   },
 }
 </script>

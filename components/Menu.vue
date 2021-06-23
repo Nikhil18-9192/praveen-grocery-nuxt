@@ -1,6 +1,11 @@
 <template>
   <div id="menu">
-    <div class="nav-item" v-for="(item, i) in menuItems" :key="i">
+    <div
+      class="nav-item"
+      v-for="(item, i) in menuItems"
+      :key="i"
+      @click="$store.commit('toggleMenuState')"
+    >
       <nuxt-link :to="item.path">
         {{ item.name }}
       </nuxt-link>

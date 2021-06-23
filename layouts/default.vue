@@ -10,13 +10,19 @@
   </div>
 </template>
 <script>
+import Cookies from 'js-cookie'
 export default {
   data() {
     return {
       menuState: false,
     }
   },
-  mounted() {},
+  mounted() {
+    const jwt = Cookies.get('jwt')
+    if (!jwt) {
+      this.$router.push('/login')
+    }
+  },
   computed: {
     storeMenuState: function () {
       return this.$store.getters.getMenuState
