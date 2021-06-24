@@ -1,12 +1,7 @@
 <template>
   <div id="button">
     <button>
-      <div v-if="loading" class="lds-ring">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
+      <div v-if="loading" class="loader"></div>
       <slot v-else></slot>
     </button>
   </div>
@@ -35,38 +30,27 @@ export default {
     font-weight: 700;
     font-size: 18px;
     line-height: 21px;
-    .lds-ring {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      margin: 0 auto;
-      position: relative;
-      width: 40px;
-      height: 100%;
-    }
-    .lds-ring div {
-      box-sizing: border-box;
-      display: block;
-      position: absolute;
-      width: 25px;
-      height: 25px;
-      margin: 6px;
-      border: 3px solid #fff;
+    .loader {
+      border: 6px solid $primaryColor;
       border-radius: 50%;
-      animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-      border-color: #fff transparent transparent transparent;
+      border-top: 6px solid #fff;
+      width: 40px;
+      height: 40px;
+      -webkit-animation: spin 2s linear infinite;
+      animation: spin 2s linear infinite;
+      margin: 0 auto;
     }
-    .lds-ring div:nth-child(1) {
-      animation-delay: -0.45s;
+
+    @-webkit-keyframes spin {
+      0% {
+        -webkit-transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(360deg);
+      }
     }
-    .lds-ring div:nth-child(2) {
-      animation-delay: -0.3s;
-    }
-    .lds-ring div:nth-child(3) {
-      animation-delay: -0.15s;
-    }
-    @keyframes lds-ring {
+
+    @keyframes spin {
       0% {
         transform: rotate(0deg);
       }

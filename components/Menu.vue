@@ -11,6 +11,7 @@
       </nuxt-link>
     </div>
     <p v-if="jwt" @click="logout">Logout</p>
+    <p class="login" v-else>Login</p>
   </div>
 </template>
 
@@ -57,7 +58,7 @@ export default {
   padding-top: 94px;
   text-align: right;
   padding-right: 17px;
-
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
   .nav-item {
     font-weight: 700;
     font-size: 18px;
@@ -76,6 +77,9 @@ export default {
     font-size: 18px;
     line-height: 21px;
     margin-bottom: 25px;
+  }
+  .login {
+    color: #ff5f5f;
   }
 }
 </style>
