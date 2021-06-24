@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       center: {
-        lat: 16.69409,
+        lat: 16.69406,
         lng: 74.24647,
       },
       infoWindowsList: [
