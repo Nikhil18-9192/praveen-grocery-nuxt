@@ -33,6 +33,7 @@ export default {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
+  z-index: 1500;
   .close {
     position: absolute;
     right: 12px;

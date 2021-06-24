@@ -24,14 +24,17 @@ export default {
   },
   methods: {
     async search() {
-      const jwt = await Cookies.get('jwt')
-
-      ;(this.shops = await this.$axios.$get(`/shops?name_contains=${this.q}`, {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      })),
+      try {
+        const jwt = await Cookies.get('jwt')
+        this.shops = await this.$axios.$get(`/shops?name_contains=${this.q}`, {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        })
         this.$emit('input', this.shops)
+      } catch (error) {
+        this.$toast.error(error)
+      }
     },
   },
 }

@@ -21,7 +21,7 @@ export default {
   height: 100%;
   button {
     width: 100%;
-    max-width: 313px;
+    // max-width: 313px;
     height: 57px;
     background: $primaryColor;
     border: none;

@@ -1,7 +1,7 @@
 <template>
   <div>
     <Toolbar />
-    <!-- <MenuButton /> -->
+    <AddShopModal />
     <Hamburger />
     <transition name="slide">
       <Menu v-if="menuState" />
