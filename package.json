@@ -16,7 +16,8 @@
     "node-sass": "^6.0.0",
     "nuxt": "^2.15.3",
     "sass-loader": "^10.1.1",
-    "vue-izitoast": "^1.2.1"
+    "vue-izitoast": "^1.2.1",
+    "vuejs-google-maps": "^0.1.0"
   },
   "devDependencies": {
     "eslint-config-prettier": "^8.1.0",
