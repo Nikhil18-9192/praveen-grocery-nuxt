@@ -9,13 +9,14 @@
 import Cookies from 'js-cookie'
 export default {
   name: 'HomePage',
-  async asyncData({ $axios }) {
+  async asyncData({ $axios, store }) {
     const jwt = await Cookies.get('jwt')
     const shops = await $axios.$get('/shops', {
       headers: {
         Authorization: `Bearer ${jwt}`,
       },
     })
+    store.commit('SET_SHOPS', shops)
     return { shops }
   },
   data() {

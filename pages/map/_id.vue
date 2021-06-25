@@ -1,5 +1,5 @@
 <template>
-  <div id="map-view">
+  <div id="shop">
     <ViewShop v-if="modal" :shop="shop" @dismiss="modal = false" />
     <div id="map"></div>
     <div class="btn">
@@ -10,8 +10,7 @@
 
 <script>
 export default {
-  name: 'MapPage',
-
+  name: 'SingleShopPage',
   data() {
     return {
       center: {
@@ -22,7 +21,6 @@ export default {
       marker: false,
       image: '/marker.svg',
       modal: false,
-      shop: {},
     }
   },
   mounted() {
@@ -34,32 +32,28 @@ export default {
   },
   methods: {
     setMarker() {
-      for (let i = 0; i < this.shops.length; i++) {
-        this.marker = new google.maps.Marker({
-          position: { lat: this.shops[i].lat, lng: this.shops[i].lng },
-          map: this.map,
-          icon: this.image,
-        })
-        this.marker.addListener('click', () => {
-          this.shop = this.shops[i]
-          this.$store.commit('SET_SHOP', this.shop)
-          this.modal = true
-          this.map.setZoom(15)
-          this.map.setCenter({ lat: this.shop.lat, lng: this.shop.lng })
-        })
-      }
+      this.marker = new google.maps.Marker({
+        position: { lat: this.shop.lat, lng: this.shop.lng },
+        map: this.map,
+        icon: this.image,
+      })
+      this.marker.addListener('click', () => {
+        this.modal = true
+        this.map.setZoom(15)
+        this.map.setCenter(this.marker.getPosition())
+      })
     },
   },
   computed: {
-    shops() {
-      return this.$store.getters.getShops
+    shop() {
+      return this.$store.getters.getSelectedShop
     },
   },
 }
 </script>
 
 <style lang="scss" scoped>
-#map-view {
+#shop {
   position: relative;
   width: 100%;
   height: 100vh;

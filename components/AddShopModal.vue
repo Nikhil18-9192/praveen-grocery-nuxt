@@ -37,6 +37,7 @@ export default {
       address: '',
     }
   },
+  mounted() {},
   methods: {
     async save() {
       try {

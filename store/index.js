@@ -3,6 +3,8 @@ export const state = () => ({
     menuState: false,
     user: false,
     jwt: false,
+    shops: [],
+    selectedShop: {}
 })
 
 export const getters = {
@@ -14,6 +16,12 @@ export const getters = {
     },
 
     getJwt: (state) => state.jwt,
+    getShops: (state) => {
+        return state.shops
+    },
+    getSelectedShop: (state) => {
+        return state.selectedShop
+    }
 
 }
 
@@ -27,6 +35,12 @@ export const mutations = {
     SET_JWT: (state, token) => {
         state.jwt = token
     },
+    SET_SHOPS: (state, shops) => {
+        state.shops = shops
+    },
+    SET_SHOP: (state, shop) => {
+        state.selectedShop = shop
+    }
 }
 
 

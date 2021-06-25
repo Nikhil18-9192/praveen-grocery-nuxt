@@ -44,10 +44,15 @@ export default {
       this.lattitude = position.lat()
       this.longitude = position.lng()
       this.marker = new google.maps.Marker({
-        position: position,
+        position: { lat: this.lattitude, lng: this.longitude },
         map: this.map,
         icon: this.image,
       })
+    },
+  },
+  computed: {
+    shop() {
+      return this.$store.getters.getSelectedShop
     },
   },
 }

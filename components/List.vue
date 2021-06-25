@@ -1,11 +1,10 @@
 <template>
   <div id="list">
-    <ViewShop v-if="modal" :shop="shop" @dismiss="modal = false" />
     <div
       class="shop"
       v-for="(item, i) in shops"
       :key="i"
-      @click="openModal(item)"
+      @click="openMap(item)"
     >
       <h4>{{ item.name }}</h4>
       <p class="phone">+91 {{ item.mobile }}</p>
@@ -19,15 +18,12 @@ export default {
   name: 'ListComponent',
   props: ['shops'],
   data() {
-    return {
-      shop: false,
-      modal: false,
-    }
+    return {}
   },
   methods: {
-    openModal(shop) {
-      this.shop = shop
-      this.modal = true
+    openMap(shop) {
+      this.$store.commit('SET_SHOP', shop)
+      this.$router.push(`/map/${shop.name}`)
     },
   },
 }
