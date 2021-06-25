@@ -8,7 +8,7 @@
       <p class="address">{{ shop.address }}</p>
     </div>
     <div class="btn">
-      <MyButton @click.native="$router.push('/add-shop')">Edit Shop</MyButton>
+      <MyButton>Edit Shop</MyButton>
     </div>
   </div>
 </template>

@@ -42,7 +42,6 @@ export default {
         })
         this.marker.addListener('click', () => {
           this.shop = this.shops[i]
-          this.$store.commit('SET_SHOP', this.shop)
           this.modal = true
           this.map.setZoom(15)
           this.map.setCenter({ lat: this.shop.lat, lng: this.shop.lng })
