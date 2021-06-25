@@ -8,7 +8,7 @@
       <p class="address">{{ shop.address }}</p>
     </div>
     <div class="btn">
-      <MyButton>Edit Shop</MyButton>
+      <MyButton @click.native="openModal">Edit Shop</MyButton>
     </div>
   </div>
 </template>
@@ -17,6 +17,11 @@
 export default {
   name: 'ViewShopComponent',
   props: ['shop'],
+  methods: {
+    openModal() {
+      this.$emit('openEditModal')
+    },
+  },
 }
 </script>
 

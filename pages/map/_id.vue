@@ -1,6 +1,12 @@
 <template>
   <div id="shop">
-    <ViewShop v-if="modal" :shop="shop" @dismiss="modal = false" />
+    <EditShopModal v-if="editModal" @dismiss="editModal = false" :shop="shop" />
+    <ViewShop
+      v-if="modal"
+      :shop="shop"
+      @dismiss="modal = false"
+      @openEditModal="openEditModal"
+    />
     <div id="map"></div>
     <div class="btn">
       <MyButton @click.native="$router.push('/')">Switch To List View</MyButton>
@@ -21,6 +27,7 @@ export default {
       marker: false,
       image: '/marker.svg',
       modal: false,
+      editModal: false,
     }
   },
   mounted() {
@@ -42,6 +49,10 @@ export default {
         this.map.setZoom(15)
         this.map.setCenter(this.marker.getPosition())
       })
+    },
+    openEditModal() {
+      this.modal = false
+      this.editModal = true
     },
   },
   computed: {
