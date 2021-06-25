@@ -27,6 +27,7 @@
 import Cookies from 'js-cookie'
 export default {
   name: 'AddShopModal',
+  props: ['lat', 'lng'],
   data() {
     return {
       loading: false,
@@ -47,6 +48,8 @@ export default {
             name: this.name,
             mobile: this.mobile,
             address: this.address,
+            lat: this.lat,
+            lng: this.lng,
           },
           {
             headers: {

@@ -2,7 +2,6 @@
   <div id="home-page">
     <InputSearch v-model="shops" />
     <List class="list" :shops="shops" />
-    <AddShopModal />
   </div>
 </template>
 

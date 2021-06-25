@@ -7,7 +7,7 @@
         placeholder="Search for shop name or address"
         @input="search"
       />
-      <img src="/search.png" alt="" />
+      <img src="/search.svg" alt="" />
     </div>
   </div>
 </template>
