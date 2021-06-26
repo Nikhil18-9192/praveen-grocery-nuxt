@@ -45,11 +45,13 @@ export default {
   methods: {
     async save() {
       const { name, mobile, address } = this
+      const number = mobile.toString()
       const validation = formValidation({
         name,
-        mobile,
+        mobile: number,
         address,
       })
+
       if (validation.error) {
         this.$toast.error(validation.error.message)
         return
@@ -61,7 +63,7 @@ export default {
           `/shops/${this.shop.id}`,
           {
             name: this.name,
-            mobile: this.mobile,
+            mobile: number,
             address: this.address,
           },
           {

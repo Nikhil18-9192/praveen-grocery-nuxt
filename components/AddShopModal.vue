@@ -42,9 +42,10 @@ export default {
   methods: {
     async save() {
       const { name, mobile, address } = this
+      const number = mobile.toString()
       const validation = formValidation({
         name,
-        mobile,
+        mobile: number,
         address,
       })
       if (validation.error) {
@@ -58,7 +59,7 @@ export default {
           `/shops`,
           {
             name: this.name,
-            mobile: this.mobile,
+            mobile: number,
             address: this.address,
             lat: this.lat,
             lng: this.lng,
