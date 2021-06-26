@@ -44,7 +44,7 @@ export const mutations = {
 }
 
 export const actions = {
-    async nuxtServerInit({ commit }, { req, res, redirect }) {
+    async nuxtServerInit({ commit, }, { req, res, redirect }) {
         const jwt = req.headers.cookie.split('=')[2]
         commit('SET_JWT', jwt)
         if (!jwt) {
@@ -52,6 +52,8 @@ export const actions = {
         }
         this.$axios.setToken(jwt, 'bearer')
         const user = await this.$axios.$get('/users/me')
+        const shops = await this.$axios.$get('/shops')
+        commit('SET_SHOPS', shops)
         commit('SET_USER', user)
 
     }

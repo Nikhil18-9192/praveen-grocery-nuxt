@@ -9,16 +9,7 @@
 import Cookies from 'js-cookie'
 export default {
   name: 'HomePage',
-  async asyncData({ $axios, store }) {
-    const jwt = await Cookies.get('jwt')
-    const shops = await $axios.$get('/shops', {
-      headers: {
-        Authorization: `Bearer ${jwt}`,
-      },
-    })
-    store.commit('SET_SHOPS', shops)
-    return { shops }
-  },
+
   data() {
     return {
       shops: [],
@@ -27,8 +18,16 @@ export default {
   mounted() {
     const jwt = Cookies.get('jwt')
     if (!jwt) {
-      this.$router.push('/login')
+      return this.$router.push('/login')
     }
+    this.fetchShops(jwt)
+  },
+  methods: {
+    async fetchShops(jwt) {
+      this.$axios.setToken(jwt, 'bearer')
+      this.shops = await this.$axios.$get('/shops')
+      this.$store.commit('SET_SHOPS', this.shops)
+    },
   },
 }
 </script>
