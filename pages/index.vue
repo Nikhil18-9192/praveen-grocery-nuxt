@@ -11,9 +11,6 @@ export default {
   name: 'HomePage',
   async asyncData({ $axios, store }) {
     const jwt = await Cookies.get('jwt')
-    if (!jwt) {
-      return
-    }
     const shops = await $axios.$get('/shops', {
       headers: {
         Authorization: `Bearer ${jwt}`,

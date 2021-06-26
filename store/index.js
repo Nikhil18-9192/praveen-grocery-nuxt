@@ -30,7 +30,7 @@ export const mutations = {
         state.menuState = !state.menuState
     },
     SET_USER: (state, user) => {
-        state.user = user.user
+        state.user = user
     },
     SET_JWT: (state, token) => {
         state.jwt = token
@@ -44,20 +44,15 @@ export const mutations = {
 }
 
 export const actions = {
-    async nuxtClientInit({ commit }, { redirect }) {
-        console.log('nuxtClientInit');
-        const jwt = await Cookies.get('jwt')
+    async nuxtServerInit({ commit }, { req, res, redirect }) {
+        const jwt = req.headers.cookie.split('=')[2]
         commit('SET_JWT', jwt)
         if (!jwt) {
             return
         }
         this.$axios.setToken(jwt, 'bearer')
-        try {
-            const user = await this.$axios.$get('/users/me')
-            commit('SET_USER', user)
-        } catch (error) {
-            Cookies.remove('jwt')
-            redirect('/login')
-        }
+        const user = await this.$axios.$get('/users/me')
+        commit('SET_USER', user)
+
     }
 }
