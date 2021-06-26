@@ -25,6 +25,7 @@
 
 <script>
 import Cookies from 'js-cookie'
+import { formValidation } from '@/utils/validation'
 export default {
   name: 'AddShopModal',
   props: ['lat', 'lng'],
@@ -40,6 +41,16 @@ export default {
   mounted() {},
   methods: {
     async save() {
+      const { name, mobile, address } = this
+      const validation = formValidation({
+        name,
+        mobile,
+        address,
+      })
+      if (validation.error) {
+        this.$toast.error(validation.error.message)
+        return
+      }
       try {
         this.loading = true
         const jwt = await Cookies.get('jwt')
