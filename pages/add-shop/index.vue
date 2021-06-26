@@ -13,6 +13,7 @@
 <script>
 export default {
   name: 'AddShopPage',
+
   data() {
     return {
       center: {
@@ -33,7 +34,8 @@ export default {
     })
     this.map.addListener('click', (e) => {
       if (this.marker) {
-        return
+        this.marker.setMap(null)
+        this.setMarker(e.latLng)
       } else {
         this.setMarker(e.latLng)
       }

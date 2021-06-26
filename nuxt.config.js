@@ -46,10 +46,11 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
-    ['vuejs-google-maps/nuxt', { apiKey: 'AIzaSyB6C7CAEJ577zPtEPFdhiO5hy10C8xjs74', libraries: [/* rest of libraries */] }]
   ],
 
-
+  router: {
+    middleware: ['auth']
+  },
 
   styleResources: {
     scss: ['~assets/global.scss'],
