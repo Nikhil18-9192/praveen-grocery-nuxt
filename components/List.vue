@@ -1,5 +1,5 @@
 <template>
-  <div id="list">
+  <div id="list" @scroll="loadMore">
     <div
       class="shop"
       v-for="(item, i) in shops"
@@ -24,6 +24,15 @@ export default {
     openMap(shop) {
       this.$store.commit('SET_SHOP', shop)
       this.$router.push(`/map/${shop.name}`)
+    },
+    loadMore() {
+      const listElm = document.querySelector('#list')
+      if (
+        listElm != null &&
+        listElm.scrollTop + listElm.clientHeight >= listElm.scrollHeight
+      ) {
+        this.$emit('paginate')
+      }
     },
   },
 }

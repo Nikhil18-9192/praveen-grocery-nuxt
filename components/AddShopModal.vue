@@ -146,12 +146,15 @@ export default {
       border: none;
       outline: none;
       padding: 15px;
-      font-weight: 300;
+      font-weight: 400;
       font-size: 12px;
       line-height: 14px;
       font-family: Roboto;
+      color: #000;
       &::placeholder {
         text-transform: capitalize;
+        color: #000;
+        font-weight: 300;
       }
     }
   }

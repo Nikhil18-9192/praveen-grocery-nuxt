@@ -45,11 +45,16 @@ export const mutations = {
 
 export const actions = {
     async nuxtServerInit({ commit, }, { req, res, redirect }) {
-        const jwt = req.headers.cookie.split('=')[2]
+
+        if (!req.headers.cookie) {
+            return
+        }
+        const jwt = req.headers.cookie.split('=')[1]
         commit('SET_JWT', jwt)
         if (!jwt) {
             return
         }
+
         this.$axios.setToken(jwt, 'bearer')
         const user = await this.$axios.$get('/users/me')
         const shops = await this.$axios.$get('/shops')

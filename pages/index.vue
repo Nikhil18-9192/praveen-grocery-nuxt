@@ -1,7 +1,7 @@
 <template>
   <div id="home-page">
     <InputSearch v-model="shops" />
-    <List class="list" :shops="shops" />
+    <List class="list" :shops="shops" @paginate="paginate" />
   </div>
 </template>
 
@@ -13,6 +13,8 @@ export default {
   data() {
     return {
       shops: [],
+      limit: 8,
+      start: 0,
     }
   },
   mounted() {
@@ -20,13 +22,23 @@ export default {
     if (!jwt) {
       return this.$router.push('/login')
     }
-    this.fetchShops(jwt)
+    this.initialFetch(jwt)
   },
   methods: {
-    async fetchShops(jwt) {
+    async paginate() {
+      this.start = this.shops.length
+      const jwt = Cookies.get('jwt')
       this.$axios.setToken(jwt, 'bearer')
-      this.shops = await this.$axios.$get('/shops')
-      this.$store.commit('SET_SHOPS', this.shops)
+      const shops = await this.$axios.$get(
+        `/shops?_start=${this.start}&_limit=${this.limit}`
+      )
+      this.shops.push(...shops)
+    },
+    async initialFetch(jwt) {
+      this.$axios.setToken(jwt, 'bearer')
+      this.shops = await this.$axios.$get(
+        `/shops?_start=${this.start}&_limit=${this.limit}`
+      )
     },
   },
 }
