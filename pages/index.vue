@@ -30,14 +30,14 @@ export default {
       const jwt = Cookies.get('jwt')
       this.$axios.setToken(jwt, 'bearer')
       const shops = await this.$axios.$get(
-        `/shops?_start=${this.start}&_limit=${this.limit}`
+        `/shops?_start=${this.start}&_limit=${this.limit}&_sort=created_at:desc`
       )
       this.shops.push(...shops)
     },
     async initialFetch(jwt) {
       this.$axios.setToken(jwt, 'bearer')
       this.shops = await this.$axios.$get(
-        `/shops?_start=${this.start}&_limit=${this.limit}`
+        `/shops?_start=${this.start}&_limit=${this.limit}&_sort=created_at:desc`
       )
     },
   },
