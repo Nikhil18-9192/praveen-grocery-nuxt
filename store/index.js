@@ -46,8 +46,10 @@ export const mutations = {
 export const actions = {
     async nuxtServerInit({ commit, }, { req, res, redirect }) {
 
-
-        const jwt = req.headers.cookie.split('=')[2]
+        if (!req.headers.cookie) {
+            return
+        }
+        const jwt = req.headers.cookie.split('=')[1]
         commit('SET_JWT', jwt)
         if (!jwt) {
             return
