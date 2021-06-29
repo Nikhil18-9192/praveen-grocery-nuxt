@@ -106,6 +106,9 @@ export default {
   @include for-big-desktop-up {
     bottom: 75px;
   }
+  @include for-tablet-only {
+    bottom: 115px;
+  }
 
   .arrow {
     position: absolute;

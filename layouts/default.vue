@@ -56,8 +56,7 @@ body {
 
 #__layout {
   position: relative;
-  width: 100%;
-  max-width: 375px;
+  width: 375px;
   background: #fff;
   height: 100vh;
   max-height: 812px;
