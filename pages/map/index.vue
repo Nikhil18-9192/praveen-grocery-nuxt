@@ -74,6 +74,7 @@ export default {
   width: 100%;
   height: 100vh;
   padding-top: 65px;
+
   #map {
     width: 100%;
     height: 100%;
@@ -83,6 +84,9 @@ export default {
     position: absolute;
     bottom: 10px;
     width: 100%;
+    @include for-big-desktop-up {
+      bottom: 135px;
+    }
   }
 }
 </style>

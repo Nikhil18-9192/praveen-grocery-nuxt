@@ -89,7 +89,7 @@ export default {
   height: 60px;
   max-height: 389px;
   width: 96%;
-  // max-width: 355px;
+  max-width: 355px;
   background: #fff;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
@@ -99,6 +99,14 @@ export default {
   padding: 0 17px;
   overflow: hidden;
   transition: 0.3s ease all;
+  @include for-tablet-portrait-up {
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+  @include for-big-desktop-up {
+    bottom: 75px;
+  }
+
   .arrow {
     position: absolute;
     right: 17px;

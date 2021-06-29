@@ -32,13 +32,17 @@ export default {
   left: 2%;
   height: 311px;
   width: 96%;
-  // max-width: 355px;
+  max-width: 355px;
   background: #fff;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   z-index: 1500;
+  @include for-tablet-portrait-up {
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
   .close {
     position: absolute;
     right: 12px;

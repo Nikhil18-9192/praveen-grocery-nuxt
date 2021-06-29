@@ -38,6 +38,9 @@ export default {
   width: 30px;
   height: 30px;
   z-index: 2000;
+  @include for-tablet-portrait-up {
+    position: absolute;
+  }
   &::before {
     background: #000;
     content: '';

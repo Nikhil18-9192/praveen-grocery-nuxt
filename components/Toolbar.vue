@@ -17,14 +17,18 @@ export default {
   left: 0;
   z-index: 1000;
   width: 100%;
-  // max-width: 375px;
+  max-width: 375px;
   height: 63px;
   background: #f7f7f7;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-
+  @include for-tablet-portrait-up {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
   p {
     font-size: 16px;
     line-height: 19px;

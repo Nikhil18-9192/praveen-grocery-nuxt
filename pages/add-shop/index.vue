@@ -80,10 +80,5 @@ export default {
       line-height: 14px;
     }
   }
-  // .modal {
-  //   position: absolute;
-  //   bottom: 10px;
-  //   width: 100%;
-  // }
 }
 </style>

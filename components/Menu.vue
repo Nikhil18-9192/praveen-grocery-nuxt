@@ -59,6 +59,9 @@ export default {
   text-align: right;
   padding-right: 17px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  @include for-tablet-portrait-up {
+    position: absolute;
+  }
   .nav-item {
     font-weight: 700;
     font-size: 18px;
