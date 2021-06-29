@@ -23,12 +23,7 @@ export default {
   justify-content: center;
   align-items: center;
   overflow-x: hidden;
-  @include for-tablet-portrait-up {
-    width: 375px;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, 0);
-  }
+
   p {
     font-size: 16px;
     line-height: 19px;
