@@ -50,6 +50,7 @@ export default {
   width: 100%;
   height: 100%;
   padding: 90px 20px 0 20px;
+
   .list {
     margin-top: 36px;
   }
