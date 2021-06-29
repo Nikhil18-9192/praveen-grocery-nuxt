@@ -74,7 +74,7 @@ export default {
         this.expand = false
       } catch (error) {
         this.loading = false
-        this.$toast.error(error)
+        this.$toast.error(error.message)
       }
     },
   },
