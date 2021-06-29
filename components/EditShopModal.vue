@@ -87,11 +87,11 @@ export default {
 #edit-shop {
   position: fixed;
   bottom: 10px;
-  left: 10px;
+  left: 2%;
   height: 100%;
   max-height: 389px;
-  width: 100%;
-  max-width: 355px;
+  width: 96%;
+  // max-width: 355px;
   background: #fff;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
   border-radius: 10px;

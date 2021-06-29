@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <Toolbar /> -->
+    <Toolbar />
     <Hamburger />
     <transition name="slide">
       <Menu v-if="menuState" />
