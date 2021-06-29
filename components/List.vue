@@ -45,6 +45,15 @@ export default {
   height: 100%;
   max-height: 500px;
   overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #f9f9f9;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+  }
   .shop {
     padding: 15px 0;
     border-bottom: 1px solid #dddddd;

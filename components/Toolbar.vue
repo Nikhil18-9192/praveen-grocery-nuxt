@@ -12,7 +12,7 @@ export default {
 
 <style lang="scss" scoped>
 #toolbar {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   z-index: 1000;
@@ -22,6 +22,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-x: hidden;
   @include for-tablet-portrait-up {
     width: 375px;
     position: absolute;
