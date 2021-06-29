@@ -22,9 +22,8 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
   @include for-tablet-portrait-up {
-    max-width: 375px;
+    width: 375px;
     position: absolute;
     left: 50%;
     transform: translate(-50%, 0);
