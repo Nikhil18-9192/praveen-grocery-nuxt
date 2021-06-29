@@ -16,6 +16,7 @@ export default {
   top: 0;
   z-index: 1000;
   width: 100%;
+  max-width: 375px;
   height: 63px;
   background: #f7f7f7;
   display: flex;

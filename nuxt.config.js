@@ -2,8 +2,12 @@ export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: true,
 
+  server: {
+    port: 3000,
+    host: '0.0.0.0',
+  },
   // Target: https://go.nuxtjs.dev/config-target
-  target: 'universal',
+  target: 'server',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -60,7 +64,7 @@ export default {
   axios: {
     baseURL:
       process.env.NODE_ENV === 'production'
-        ? 'http://localhost:1337'
+        ? 'https://praveen-backend.herokuapp.com/'
         : 'http://localhost:1337',
   },
 
