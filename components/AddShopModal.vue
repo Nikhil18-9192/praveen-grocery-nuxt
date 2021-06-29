@@ -47,6 +47,7 @@ export default {
         name,
         mobile: number,
         address,
+        lat: this.lat,
       })
       if (validation.error) {
         this.$toast.error(validation.error.message)

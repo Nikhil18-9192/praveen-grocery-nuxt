@@ -9,6 +9,7 @@ const formValidation = (data) => {
             .required()
             .pattern(phoneExp),
         address: Joi.string().min(3).max(250).label('Address').required(),
+        lat: Joi.number().label('Marker').required().error(new Error('Please select marker first'))
     }).required()
 
     return formSchema.validate(data)
