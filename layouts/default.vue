@@ -45,19 +45,6 @@ html {
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
 }
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #e5e5e5;
-  /* padding-top: 100px; */
-}
-#__layout {
-  width: 375px;
-  height: 100vh;
-  min-height: 712px;
-  background: #fff;
-}
 
 *,
 *::before,
