@@ -17,7 +17,6 @@ export default {
   left: 0;
   z-index: 1000;
   width: 100%;
-  max-width: 375px;
   height: 63px;
   background: #f7f7f7;
   display: flex;
@@ -25,6 +24,7 @@ export default {
   align-items: center;
   overflow: hidden;
   @include for-tablet-portrait-up {
+    max-width: 375px;
     position: absolute;
     left: 50%;
     transform: translate(-50%, 0);
