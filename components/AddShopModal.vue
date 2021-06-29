@@ -1,5 +1,6 @@
 <template>
   <div id="add-shop" :class="expand ? 'expand' : ''">
+    <div class="trigger" v-if="!expand" @click="expand = true"></div>
     <div class="arrow" @click="expand = !expand">
       <img v-if="expand" src="/arrow-down.svg" alt="arrow icon" />
       <img v-else src="/arrow-up.svg" alt="arrow icon" />
@@ -110,7 +111,13 @@ export default {
   @include for-tablet-only {
     bottom: 115px;
   }
-
+  .trigger {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+  }
   .arrow {
     position: absolute;
     right: 17px;

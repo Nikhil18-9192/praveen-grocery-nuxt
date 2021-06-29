@@ -4,7 +4,8 @@ export const state = () => ({
     user: false,
     jwt: false,
     shops: [],
-    selectedShop: {}
+    selectedShop: {},
+    loading: false
 })
 
 export const getters = {
@@ -40,6 +41,9 @@ export const mutations = {
     },
     SET_SHOP: (state, shop) => {
         state.selectedShop = shop
+    },
+    SET_LOADING: (state) => {
+        state.loading = !state.loading
     }
 }
 
@@ -57,7 +61,9 @@ export const actions = {
 
         this.$axios.setToken(jwt, 'bearer')
         const user = await this.$axios.$get('/users/me')
+        commit('SET_LOADING')
         const shops = await this.$axios.$get('/shops')
+        commit('SET_LOADING')
         commit('SET_SHOPS', shops)
         commit('SET_USER', user)
 

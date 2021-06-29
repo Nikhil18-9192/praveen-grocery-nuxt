@@ -2,6 +2,7 @@
   <div>
     <Toolbar />
     <Hamburger />
+    <Loader v-if="$store.state.loading" />
     <transition name="slide">
       <Menu v-if="menuState" />
     </transition>
