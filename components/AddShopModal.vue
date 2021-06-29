@@ -85,7 +85,7 @@ export default {
 #add-shop {
   position: fixed;
   bottom: 10px;
-  left: 2%;
+  left: 3%;
   height: 60px;
   max-height: 389px;
   width: 96%;
