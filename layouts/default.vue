@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <Toolbar /> -->
+    <Toolbar />
     <Hamburger />
     <transition name="slide">
       <Menu v-if="menuState" />
@@ -56,7 +56,8 @@ body {
 
 #__layout {
   position: relative;
-  width: 375px;
+  width: 100%;
+  max-width: 375px;
   background: #fff;
   height: 100vh;
   max-height: 812px;
