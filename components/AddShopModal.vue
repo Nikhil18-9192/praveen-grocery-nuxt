@@ -75,6 +75,7 @@ export default {
         )
         this.loading = false
         this.expand = false
+        this.$router.push('/')
       } catch (error) {
         this.loading = false
         this.$toast.error(error.message)
