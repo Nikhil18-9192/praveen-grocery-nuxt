@@ -146,6 +146,7 @@ export default {
       line-height: 14px;
       &::placeholder {
         text-transform: capitalize;
+        font-weight: 500;
       }
     }
     textarea {

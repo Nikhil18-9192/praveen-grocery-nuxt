@@ -1,6 +1,6 @@
 <template>
   <div id="toolbar">
-    <p>Grocery Data</p>
+    <nuxt-link to="/"><p>Grocery Data</p></nuxt-link>
   </div>
 </template>
 
@@ -26,10 +26,13 @@ export default {
     width: 375px;
     position: absolute;
   }
+  a {
+    text-decoration: none;
+  }
   p {
     font-size: 16px;
     line-height: 19px;
-    font-weight: 400;
+    font-weight: 300;
     color: $primaryColor;
   }
 }

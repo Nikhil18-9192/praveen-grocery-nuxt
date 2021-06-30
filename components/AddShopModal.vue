@@ -2,8 +2,9 @@
   <div id="add-shop" :class="expand ? 'expand' : ''">
     <div class="trigger" v-if="!expand" @click="expand = true"></div>
     <div class="arrow" @click="expand = !expand">
-      <img v-if="expand" src="/arrow-down.svg" alt="arrow icon" />
-      <img v-else src="/arrow-up.svg" alt="arrow icon" />
+      <div v-if="expand" class="close">&#x2715;</div>
+
+      <p v-else>&#x2B;</p>
     </div>
     <p class="heading">Add New Shop</p>
     <div class="form">
@@ -121,18 +122,29 @@ export default {
   .arrow {
     position: absolute;
     right: 17px;
-    top: 26px;
-    img {
-      width: 20px;
-      height: 15px;
-      object-fit: contain;
+    top: 18px;
+    .close {
+      width: 25px;
+      height: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      background: #ff9e9e;
+      color: #fff;
+      box-sizing: border-box;
+      cursor: pointer;
+    }
+    p {
+      line-height: 1;
+      font-size: 30px;
     }
   }
   .heading {
     font-weight: 400;
     font-size: 14px;
     line-height: 16px;
-    color: #bcbcbc;
+    color: #000;
     text-align: center;
     padding-top: 25px;
     min-height: 10%;
@@ -172,8 +184,7 @@ export default {
       color: #000;
       &::placeholder {
         text-transform: capitalize;
-        color: #000;
-        font-weight: 300;
+        font-weight: 500;
       }
     }
   }

@@ -4,7 +4,9 @@
     <p class="heading">Selected Shop</p>
     <div class="info">
       <h4>{{ shop.name }}</h4>
-      <p class="phone">+91 {{ shop.mobile }}</p>
+      <a :href="'tel:+91' + shop.mobile"
+        ><p class="phone">+91 {{ shop.mobile }}</p></a
+      >
       <p class="address">{{ shop.address }}</p>
     </div>
     <div class="btn">
@@ -43,6 +45,12 @@ export default {
     left: 50%;
     transform: translate(-50%, 0);
   }
+  @include for-big-desktop-up {
+    bottom: 70px;
+  }
+  @include for-tablet-only {
+    bottom: 115px;
+  }
   .close {
     position: absolute;
     right: 12px;
@@ -56,6 +64,7 @@ export default {
     background: #ff9e9e;
     color: #fff;
     box-sizing: border-box;
+    cursor: pointer;
   }
   .heading {
     font-weight: 400;
@@ -75,6 +84,9 @@ export default {
       font-size: 18px;
       line-height: 21px;
       color: $primaryColor;
+    }
+    a {
+      text-decoration: none;
     }
     .phone {
       font-weight: 500;

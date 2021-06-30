@@ -7,7 +7,8 @@
         placeholder="Search for shop name or address"
         @input="search"
       />
-      <img src="/search.svg" alt="" />
+      <img v-if="q == ''" src="/search.png" alt="" />
+      <div v-else class="clear" @click="clearText">&#x2715;</div>
     </div>
   </div>
 </template>
@@ -16,6 +17,7 @@
 import Cookies from 'js-cookie'
 export default {
   name: 'InputSearchComponent',
+
   data() {
     return {
       q: '',
@@ -26,7 +28,7 @@ export default {
     async search() {
       try {
         const jwt = await Cookies.get('jwt')
-        this.shops = await this.$axios.$get(`/shops?name_contains=${this.q}`, {
+        this.shops = await this.$axios.$get(`/shops?_q=${this.q}`, {
           headers: {
             Authorization: `Bearer ${jwt}`,
           },
@@ -35,6 +37,10 @@ export default {
       } catch (error) {
         this.$toast.error(error)
       }
+    },
+    async clearText() {
+      this.q = ''
+      this.$emit('paginate')
     },
   },
 }
@@ -70,6 +76,21 @@ export default {
       position: absolute;
       right: 17px;
       top: 9px;
+    }
+    .clear {
+      position: absolute;
+      right: 25px;
+      top: 15px;
+      cursor: pointer;
+      background: #ff5f5f;
+      border-radius: 50%;
+      box-sizing: border-box;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
     }
   }
 }

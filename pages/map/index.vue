@@ -36,6 +36,8 @@ export default {
     this.map = new google.maps.Map(document.getElementById('map'), {
       center: this.center,
       zoom: 12,
+      zoomControlOptions: { position: google.maps.ControlPosition.RIGHT_TOP },
+      fullscreenControl: false,
     })
     this.setMarker()
   },

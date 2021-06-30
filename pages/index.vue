@@ -1,6 +1,6 @@
 <template>
   <div id="home-page">
-    <InputSearch v-model="shops" />
+    <InputSearch v-model="shops" @paginate="paginate" />
     <List class="list" :shops="shops" />
     <div class="pagi-info">
       <Pagination
@@ -84,7 +84,7 @@ export default {
     align-items: center;
     justify-content: center;
     margin-bottom: 32px;
-    margin-top: 32px;
+    margin-top: 20px;
     ::v-deep .pagination {
       display: flex;
       justify-content: center;
@@ -105,6 +105,8 @@ export default {
       }
       p {
         text-align: center;
+        font-size: 14px;
+        font-weight: 300;
       }
       .disabled {
         opacity: 0.2 !important;

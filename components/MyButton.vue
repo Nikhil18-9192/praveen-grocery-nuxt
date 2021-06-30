@@ -17,16 +17,16 @@ export default {}
   height: 57px;
   text-align: center;
   button {
-    border: 1px solid $primaryColor;
     width: 100%;
     max-width: 313px;
-    height: 100%;
-    background: #fff;
+    height: 57px;
+    background: $primaryColor;
+    border: none;
     border-radius: 6px;
+    color: #fff;
     font-weight: 700;
     font-size: 18px;
     line-height: 21px;
-    color: #3e3e3e;
     text-transform: capitalize;
   }
 }

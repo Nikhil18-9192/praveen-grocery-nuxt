@@ -25,9 +25,8 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, 0);
-
   background: rgba(255, 255, 255, 0.993);
-  box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.534);
   z-index: 1000;
   width: 55px;
   height: 55px;
@@ -35,6 +34,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
 }
 .lds-ring div {
   box-sizing: border-box;

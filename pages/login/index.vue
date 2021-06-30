@@ -84,10 +84,11 @@ export default {
       font-size: 24px;
       line-height: 28px;
       &::placeholder {
-        font-weight: 700;
+        font-weight: 500;
         font-size: 24px;
         line-height: 28px;
         color: #000;
+        text-transform: capitalize;
       }
     }
     .btn {

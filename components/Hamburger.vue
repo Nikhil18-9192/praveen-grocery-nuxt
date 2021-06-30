@@ -70,9 +70,11 @@ export default {
   }
   &.anime::after {
     transform: translateY(-10px) rotate(-135deg);
+    background: $closeIcon;
   }
   &.anime::before {
     transform: translateY(12px) rotate(135deg);
+    background: $closeIcon;
   }
   .burger.anime {
     transform: scale(0);
