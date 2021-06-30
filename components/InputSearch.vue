@@ -27,6 +27,7 @@ export default {
   methods: {
     async search() {
       try {
+        this.$store.commit('SET_LOADING')
         const jwt = await Cookies.get('jwt')
         this.shops = await this.$axios.$get(`/shops?_q=${this.q}`, {
           headers: {
@@ -34,8 +35,9 @@ export default {
           },
         })
         this.$emit('input', this.shops)
+        this.$store.commit('SET_LOADING')
       } catch (error) {
-        this.$toast.error(error)
+        this.$toast.error(error.message)
       }
     },
     async clearText() {
