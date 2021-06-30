@@ -47,6 +47,25 @@ html {
   box-sizing: border-box;
 }
 
+body {
+  background: #e5e5e5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+#__layout {
+  position: relative;
+  width: 375px;
+  background: #fff;
+  height: 100vh;
+  max-height: 812px;
+  overflow: hidden;
+}
 *,
 *::before,
 *::after {
