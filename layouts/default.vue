@@ -47,7 +47,7 @@ html {
   box-sizing: border-box;
 }
 
-body {
+#__nuxt {
   background: #e5e5e5;
   display: flex;
   justify-content: center;
