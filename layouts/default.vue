@@ -3,6 +3,11 @@
     <Toolbar />
     <Hamburger />
     <Loader v-if="$store.state.loading" />
+    <div
+      class="closeModal"
+      v-if="menuState"
+      @click="$store.commit('toggleMenuState')"
+    ></div>
     <transition name="slide">
       <Menu v-if="menuState" />
     </transition>
@@ -45,6 +50,13 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+}
+
+.closeModal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
 }
 
 #__nuxt {
