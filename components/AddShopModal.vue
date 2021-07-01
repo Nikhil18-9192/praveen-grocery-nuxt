@@ -147,7 +147,6 @@ export default {
       border: 1px solid #000;
       border-radius: 50%;
       padding: 0 5px;
-      cursor: pointer;
     }
   }
   .heading {
