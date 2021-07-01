@@ -12,7 +12,7 @@
         :options="paginationOptions"
       />
     </div>
-    <p class="empty-msg" v-else>No Records match</p>
+    <p class="empty-msg" v-else>No Records Found</p>
   </div>
 </template>
 

@@ -7,9 +7,9 @@
       @click="openMap(item)"
     >
       <h4>{{ item.name }}</h4>
-      <a :href="'tel:+91' + item.mobile"
-        ><p class="phone">+91 {{ item.mobile }}</p></a
-      >
+      <p class="phone">
+        <a :href="'tel:+91' + item.mobile">+91 {{ item.mobile }}</a>
+      </p>
       <p class="address">{{ item.address }}</p>
     </div>
   </div>
@@ -66,6 +66,7 @@ export default {
       font-size: 14px;
       line-height: 16px;
       margin-bottom: 5px;
+      max-width: 110px;
     }
     .address {
       font-weight: 400;

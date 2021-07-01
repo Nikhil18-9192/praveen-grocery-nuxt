@@ -98,6 +98,7 @@ export default {
   height: 60px;
   max-height: 389px;
   width: 96%;
+  margin: 0 auto;
   max-width: 355px;
   background: #fff;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
@@ -143,10 +144,10 @@ export default {
     }
     .plus {
       line-height: 1;
-      font-size: 30px;
+      font-size: 24px;
       border: 1px solid #000;
       border-radius: 50%;
-      padding: 0 5px;
+      padding: 1px 6px;
     }
   }
   .heading {

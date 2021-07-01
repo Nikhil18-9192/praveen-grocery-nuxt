@@ -4,9 +4,9 @@
     <p class="heading">Selected Shop</p>
     <div class="info">
       <h4>{{ shop.name }}</h4>
-      <a :href="'tel:+91' + shop.mobile"
-        ><p class="phone">+91 {{ shop.mobile }}</p></a
-      >
+      <p class="phone">
+        <a :href="'tel:+91' + shop.mobile">+91 {{ shop.mobile }}</a>
+      </p>
       <p class="address">{{ shop.address }}</p>
     </div>
     <div class="btn">
@@ -92,9 +92,9 @@ export default {
       font-weight: 500;
       font-size: 13px;
       line-height: 15px;
-      margin-top: 20px;
-      margin-bottom: 25px;
       color: #000;
+      max-width: 105px;
+      margin: 20px auto 25px auto;
     }
     .address {
       font-weight: 300;
