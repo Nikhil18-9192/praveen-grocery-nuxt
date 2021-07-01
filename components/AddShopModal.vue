@@ -3,8 +3,7 @@
     <div class="trigger" v-if="!expand" @click="expand = true"></div>
     <div class="arrow" @click="expand = !expand">
       <div v-if="expand" class="close">&#x2715;</div>
-
-      <p v-else>&#x2B;</p>
+      <p class="plus" v-else>&#x2B;</p>
     </div>
     <p class="heading">Add New Shop</p>
     <div class="form">
@@ -142,9 +141,13 @@ export default {
       box-sizing: border-box;
       cursor: pointer;
     }
-    p {
+    .plus {
       line-height: 1;
       font-size: 30px;
+      border: 1px solid #000;
+      border-radius: 50%;
+      padding: 0 5px;
+      cursor: pointer;
     }
   }
   .heading {

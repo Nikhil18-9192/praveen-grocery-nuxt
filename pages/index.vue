@@ -2,7 +2,7 @@
   <div id="home-page">
     <InputSearch v-model="shops" @paginate="paginate" />
     <List class="list" :shops="shops" />
-    <div class="pagi-info">
+    <div v-if="shops && shops.length" class="pagi-info">
       <Pagination
         class="pagination"
         v-model="page"
@@ -12,6 +12,7 @@
         :options="paginationOptions"
       />
     </div>
+    <p class="empty-msg" v-else>No Records match</p>
   </div>
 </template>
 
@@ -78,6 +79,11 @@ export default {
 
   .list {
     margin-top: 36px;
+  }
+  .empty-msg {
+    text-align: center;
+    font-weight: 300;
+    color: #b1b1b1;
   }
   .pagi-info {
     display: flex;

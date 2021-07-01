@@ -81,18 +81,20 @@ export default {
     }
     .clear {
       position: absolute;
-      right: 25px;
-      top: 15px;
+      right: 15px;
+      top: 10px;
       cursor: pointer;
       background: #ff5f5f;
       border-radius: 50%;
       box-sizing: border-box;
-      width: 24px;
-      height: 24px;
+      width: 30px;
+      height: 30px;
       display: flex;
       justify-content: center;
       align-items: center;
       cursor: pointer;
+      font-size: 18px;
+      font-weight: 800;
     }
   }
 }
