@@ -9,7 +9,13 @@
     <p class="heading">Add New Shop</p>
     <div class="form">
       <input v-model="name" type="text" placeholder="shop name" />
-      <input v-model="mobile" type="number" placeholder="phone number" />
+      <input
+        v-model="mobile"
+        type="number"
+        placeholder="phone number"
+        pattern="/^[789]\d{9}$/"
+        onKeyPress="if(this.value.length==10) return false;"
+      />
       <textarea
         v-model="address"
         name=""
