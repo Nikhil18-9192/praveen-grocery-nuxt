@@ -64,7 +64,7 @@ export default {
   axios: {
     baseURL:
       process.env.NODE_ENV === 'production'
-        ? 'https://praveen-backend.herokuapp.com/'
+        ? 'https://praveen-grocery.herokuapp.com'
         : 'http://localhost:1337',
   },
 
