@@ -35,9 +35,7 @@ export default {
   },
   methods: {
     logout() {
-      Cookies.remove('jwt')
-      this.$store.commit('SET_USER', false)
-      this.$store.commit('SET_JWT', false)
+      this.$store.dispatch('cleanupAction')
       this.$router.push('/login')
       this.$store.commit('toggleMenuState')
     },

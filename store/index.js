@@ -67,5 +67,12 @@ export const actions = {
         commit('SET_SHOPS', shops)
         commit('SET_USER', user)
 
+    },
+
+    async cleanupAction({ commit }) {
+        Cookies.remove('jwt')
+        commit('SET_USER', false)
+        commit('SET_JWT', false)
+        this.$axios.setToken('', 'bearer')
     }
 }

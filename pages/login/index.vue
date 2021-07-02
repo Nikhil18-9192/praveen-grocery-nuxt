@@ -43,7 +43,7 @@ export default {
         this.$axios.setToken(res.jwt, 'bearer')
         this.$router.push('/')
       } catch (error) {
-        this.$toast.error('Login Failed')
+        this.$toast.error(error.message)
         this.loading = false
       }
     },
