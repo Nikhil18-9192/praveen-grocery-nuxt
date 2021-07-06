@@ -65,7 +65,6 @@ export default {
       this.shops = await this.$axios.$get(
         `/shops?_start=${this.start}&_limit=${this.limit}&_where[user.id]=${this.userId}`
       )
-
       this.totalCount = await this.$axios.$get(
         `/shops/count?_where[user.id]=${this.userId}`
       )
