@@ -11,6 +11,7 @@
         pattern="/^[789]\d{9}$/"
         onKeyPress="if(this.value.length==10) return false;"
       />
+      <input v-model="owner" type="text" placeholder="owner name" />
       <textarea
         v-model="address"
         name=""
@@ -28,7 +29,7 @@
 
 <script>
 import Cookies from 'js-cookie'
-import { formValidation } from '@/utils/validation'
+import { formEditValidation } from '@/utils/validation'
 export default {
   name: 'EditShopModal',
   props: ['shop'],
@@ -39,6 +40,7 @@ export default {
       name: '',
       mobile: '',
       address: '',
+      owner: '',
     }
   },
   mounted() {
@@ -46,16 +48,18 @@ export default {
       this.name = this.shop.name
       this.mobile = this.shop.mobile
       this.address = this.shop.address
+      this.owner = this.shop.owner
     }
   },
   methods: {
     async save() {
-      const { name, mobile, address } = this
+      const { name, mobile, address, owner } = this
       const number = mobile.toString()
-      const validation = formValidation({
+      const validation = formEditValidation({
         name,
         mobile: number,
         address,
+        owner,
       })
 
       if (validation.error) {
@@ -71,6 +75,7 @@ export default {
             name: this.name,
             mobile: number,
             address: this.address,
+            owner: this.owner,
           },
           {
             headers: {
@@ -95,7 +100,7 @@ export default {
   bottom: 10px;
   left: 2%;
   height: 100%;
-  max-height: 389px;
+  max-height: 435px;
   width: 96%;
   max-width: 355px;
   background: #fff;
@@ -138,6 +143,7 @@ export default {
   }
   .form {
     flex-grow: 1;
+    margin-bottom: 15px;
     input {
       width: 100%;
       height: 45px;

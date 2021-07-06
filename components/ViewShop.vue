@@ -7,6 +7,9 @@
       <p class="phone">
         <a :href="'tel:+91' + shop.mobile">+91 {{ shop.mobile }}</a>
       </p>
+      <p class="owner">
+        owner - <span>{{ shop.owner ? shop.owner : '' }}</span>
+      </p>
       <p class="address">{{ shop.address }}</p>
     </div>
     <div class="btn">
@@ -95,6 +98,15 @@ export default {
       color: #000;
       max-width: 105px;
       margin: 20px auto 25px auto;
+    }
+    .owner {
+      font-weight: 300;
+      font-size: 13px;
+      line-height: 15px;
+      padding-bottom: 25px;
+      span {
+        font-weight: 500;
+      }
     }
     .address {
       font-weight: 300;

@@ -48,7 +48,7 @@ export const mutations = {
 }
 
 export const actions = {
-    async nuxtServerInit({ commit, }, { req, res, redirect }) {
+    async nuxtServerInit({ commit }, { req, res, redirect }) {
 
         if (!req.headers.cookie) {
             return
@@ -62,7 +62,7 @@ export const actions = {
         this.$axios.setToken(jwt, 'bearer')
         const user = await this.$axios.$get('/users/me')
         commit('SET_LOADING')
-        const shops = await this.$axios.$get('/shops')
+        const shops = await this.$axios.$get(`/shops?_where[user.id]=${user.id}`)
         commit('SET_LOADING')
         commit('SET_SHOPS', shops)
         commit('SET_USER', user)

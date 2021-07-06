@@ -15,6 +15,7 @@
         pattern="/^[789]\d{9}$/"
         onKeyPress="if(this.value.length==10) return false;"
       />
+      <input v-model="owner" type="text" placeholder="owner name" />
       <textarea
         v-model="address"
         name=""
@@ -43,16 +44,18 @@ export default {
       name: '',
       mobile: '',
       address: '',
+      owner: '',
     }
   },
   mounted() {},
   methods: {
     async save() {
-      const { name, mobile, address } = this
+      const { name, mobile, address, owner } = this
       const number = mobile.toString()
       const validation = formValidation({
         name,
         mobile: number,
+        owner,
         address,
         lat: this.lat,
       })
@@ -68,9 +71,11 @@ export default {
           {
             name: this.name,
             mobile: number,
+            owner: this.owner,
             address: this.address,
             lat: this.lat,
             lng: this.lng,
+            user: this.$store.state.user.id,
           },
           {
             headers: {
@@ -163,6 +168,7 @@ export default {
   }
   .form {
     flex-grow: 1;
+    margin-bottom: 15px;
     input {
       width: 100%;
       height: 45px;
@@ -203,6 +209,6 @@ export default {
   }
 }
 .expand {
-  min-height: 389px;
+  min-height: 435px;
 }
 </style>

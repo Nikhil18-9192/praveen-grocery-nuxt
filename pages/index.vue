@@ -36,9 +36,11 @@ export default {
         chunk: 5,
       },
       totalCount: 0,
+      userId: '',
     }
   },
   mounted() {
+    this.userId = this.$store.state.user.id
     const jwt = Cookies.get('jwt')
     if (!jwt) {
       return this.$router.push('/login')
@@ -52,7 +54,7 @@ export default {
       this.$axios.setToken(jwt, 'bearer')
       this.$store.commit('SET_LOADING')
       const shops = await this.$axios.$get(
-        `/shops?_start=${this.start}&_limit=${this.limit}&_sort=created_at:desc`
+        `/shops?_start=${this.start}&_limit=${this.limit}&_where[user.id]=${this.userId}`
       )
       this.shops = shops
       this.$store.commit('SET_LOADING')
@@ -61,9 +63,12 @@ export default {
       this.$axios.setToken(jwt, 'bearer')
       this.$store.commit('SET_LOADING')
       this.shops = await this.$axios.$get(
-        `/shops?_start=${this.start}&_limit=${this.limit}&_sort=created_at:desc`
+        `/shops?_start=${this.start}&_limit=${this.limit}&_where[user.id]=${this.userId}`
       )
-      this.totalCount = await this.$axios.$get(`/shops/count`)
+
+      this.totalCount = await this.$axios.$get(
+        `/shops/count?_where[user.id]=${this.userId}`
+      )
       this.$store.commit('SET_LOADING')
     },
   },

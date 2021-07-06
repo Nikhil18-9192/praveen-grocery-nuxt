@@ -8,6 +8,7 @@ const formValidation = (data) => {
             .label('Mobile Number')
             .required()
             .pattern(phoneExp),
+        owner: Joi.string().min(3).max(100).label('owner').required(),
         address: Joi.string().min(3).max(250).label('Address').required(),
         lat: Joi.number().label('Marker').required().error(new Error('Please select marker first'))
     }).required()
@@ -15,4 +16,19 @@ const formValidation = (data) => {
     return formSchema.validate(data)
 }
 
-export { formValidation }
+const formEditValidation = (data) => {
+    const formSchema = Joi.object({
+        name: Joi.string().min(3).max(100).label('Name').required(),
+        mobile: Joi.string()
+            .min(10)
+            .label('Mobile Number')
+            .required()
+            .pattern(phoneExp),
+        owner: Joi.string().min(3).max(100).label('owner').required(),
+        address: Joi.string().min(3).max(250).label('Address').required(),
+    }).required()
+
+    return formSchema.validate(data)
+}
+
+export { formValidation, formEditValidation }
