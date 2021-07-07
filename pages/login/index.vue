@@ -41,7 +41,11 @@ export default {
         this.$store.commit('SET_JWT', res.jwt)
         Cookies.set('jwt', res.jwt, { expires: 365 })
         this.$axios.setToken(res.jwt, 'bearer')
-        this.$router.push('/')
+        if (res.user.role.type == 'admin') {
+          this.$router.push('/admin')
+        } else {
+          this.$router.push('/')
+        }
       } catch (error) {
         this.$toast.error(error.message)
         this.loading = false

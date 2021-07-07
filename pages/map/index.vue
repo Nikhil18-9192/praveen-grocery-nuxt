@@ -9,12 +9,13 @@
     />
     <div id="map"></div>
     <div class="btn">
-      <MyButton @click.native="$router.push('/')">Switch To List View</MyButton>
+      <MyButton @click.native="pushRoute">Switch To List View</MyButton>
     </div>
   </div>
 </template>
 
 <script>
+import Cookies from 'js-cookie'
 export default {
   name: 'MapPage',
 
@@ -30,6 +31,7 @@ export default {
       modal: false,
       shop: {},
       editModal: false,
+      shops: [],
     }
   },
   mounted() {
@@ -42,7 +44,18 @@ export default {
     this.setMarker()
   },
   methods: {
-    setMarker() {
+    async setMarker() {
+      const jwt = Cookies.get('jwt')
+      this.$axios.setToken(jwt, 'bearer')
+      if (this.$store.state.user.role.type !== 'admin') {
+        this.shops = await this.$axios.$get(
+          `/shops?_where[user.id]=${this.$store.state.user.id}`
+        )
+      } else {
+        this.shops = await this.$axios.$get(`/shops`)
+      }
+
+      this.$store.commit('SET_SHOPS', this.shops)
       for (let i = 0; i < this.shops.length; i++) {
         this.marker = new google.maps.Marker({
           position: { lat: this.shops[i].lat, lng: this.shops[i].lng },
@@ -61,10 +74,22 @@ export default {
       this.modal = false
       this.editModal = true
     },
+    pushRoute() {
+      if (this.$store.state.user.role.type == 'admin') {
+        this.$router.push('/admin')
+      } else {
+        this.$router.push('/')
+      }
+    },
   },
   computed: {
-    shops() {
+    allShops() {
       return this.$store.getters.getShops
+    },
+  },
+  watch: {
+    allShops(val) {
+      this.shops = val
     },
   },
 }

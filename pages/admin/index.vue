@@ -1,6 +1,6 @@
 <template>
-  <div id="home-page">
-    <!-- <InputSearch v-model="shops" @paginate="paginate" /> -->
+  <div id="admin-page">
+    <InputSearch v-model="shops" @paginate="paginate" />
     <List class="list" :shops="shops" />
     <div v-if="shops && shops.length" class="pagi-info">
       <Pagination
@@ -36,11 +36,9 @@ export default {
         chunk: 5,
       },
       totalCount: 0,
-      userId: '',
     }
   },
   mounted() {
-    this.userId = this.$store.state.user.id
     const jwt = Cookies.get('jwt')
     if (!jwt) {
       return this.$router.push('/login')
@@ -54,7 +52,7 @@ export default {
       this.$axios.setToken(jwt, 'bearer')
       this.$store.commit('SET_LOADING')
       const shops = await this.$axios.$get(
-        `/shops?_start=${this.start}&_limit=${this.limit}&_where[user.id]=${this.userId}`
+        `/shops?_start=${this.start}&_limit=${this.limit}&_sort=created_at:desc`
       )
       this.shops = shops
       this.$store.commit('SET_LOADING')
@@ -63,11 +61,9 @@ export default {
       this.$axios.setToken(jwt, 'bearer')
       this.$store.commit('SET_LOADING')
       this.shops = await this.$axios.$get(
-        `/shops?_start=${this.start}&_limit=${this.limit}&_where[user.id]=${this.userId}`
+        `/shops?_start=${this.start}&_limit=${this.limit}&_sort=created_at:desc`
       )
-      this.totalCount = await this.$axios.$get(
-        `/shops/count?_where[user.id]=${this.userId}`
-      )
+      this.totalCount = await this.$axios.$get(`/shops/count`)
       this.$store.commit('SET_LOADING')
     },
   },
@@ -75,12 +71,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#home-page {
+#admin-page {
   position: relative;
   width: 100%;
   height: 100%;
   padding: 90px 20px 0 20px;
 
+  .list {
+    margin-top: 36px;
+  }
   .empty-msg {
     text-align: center;
     font-weight: 300;

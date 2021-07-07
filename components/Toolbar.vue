@@ -1,6 +1,11 @@
 <template>
   <div id="toolbar">
-    <nuxt-link to="/"><p>Praveen Grocery</p></nuxt-link>
+    <nuxt-link
+      v-if="$store.state.user"
+      :to="$store.state.user.role.type == 'admin' ? '/admin' : '/'"
+      ><p>Praveen Grocery</p></nuxt-link
+    >
+    <nuxt-link v-else to="/"><p>Praveen Grocery</p></nuxt-link>
   </div>
 </template>
 

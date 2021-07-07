@@ -9,7 +9,7 @@
     />
     <div id="map"></div>
     <div class="btn">
-      <MyButton @click.native="$router.push('/')">Switch To List View</MyButton>
+      <MyButton @click.native="pushRoute()">Switch To List View</MyButton>
     </div>
   </div>
 </template>
@@ -55,6 +55,13 @@ export default {
     openEditModal() {
       this.modal = false
       this.editModal = true
+    },
+    pushRoute() {
+      if (this.$store.state.user.role.type == 'admin') {
+        this.$router.push('/admin')
+      } else {
+        this.$router.push('/')
+      }
     },
   },
   computed: {

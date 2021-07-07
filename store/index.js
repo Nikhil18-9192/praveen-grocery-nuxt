@@ -62,7 +62,12 @@ export const actions = {
         this.$axios.setToken(jwt, 'bearer')
         const user = await this.$axios.$get('/users/me')
         commit('SET_LOADING')
-        const shops = await this.$axios.$get(`/shops?_where[user.id]=${user.id}`)
+        let shops = []
+        if (user.role.type == 'admin') {
+            shops = await this.$axios.$get(`/shops`)
+        } else {
+            shops = await this.$axios.$get(`/shops?_where[user.id]=${user.id}`)
+        }
         commit('SET_LOADING')
         commit('SET_SHOPS', shops)
         commit('SET_USER', user)
@@ -73,6 +78,7 @@ export const actions = {
         Cookies.remove('jwt')
         commit('SET_USER', false)
         commit('SET_JWT', false)
+        commit('SET_SHOP', [])
         this.$axios.setToken('', 'bearer')
     }
 }
