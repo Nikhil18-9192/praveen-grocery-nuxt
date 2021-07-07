@@ -1,11 +1,5 @@
 <template>
   <div id="menu">
-    <p class="list-route" @click="$store.commit('toggleMenuState')">
-      <nuxt-link :to="$store.state.user.role.type == 'admin' ? '/admin' : '/'">
-        Shop List
-      </nuxt-link>
-    </p>
-
     <div
       class="nav-item"
       v-for="(item, i) in menuItems"
@@ -66,20 +60,7 @@ export default {
   @include for-tablet-portrait-up {
     position: absolute;
   }
-  .list-route {
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 21px;
-    margin-bottom: 25px;
-    margin-top: 25px;
-    a {
-      color: #000;
-      text-decoration: none;
-      &.nuxt-link-exact-active {
-        color: #ff5f5f;
-      }
-    }
-  }
+
   .nav-item {
     font-weight: 700;
     font-size: 18px;
