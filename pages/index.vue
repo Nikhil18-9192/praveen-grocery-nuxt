@@ -41,6 +41,9 @@ export default {
   },
   mounted() {
     this.userId = this.$store.state.user.id
+    if (this.$store.state.user.role.type == 'admin') {
+      return this.$router.push('/admin')
+    }
     const jwt = Cookies.get('jwt')
     if (!jwt) {
       return this.$router.push('/login')

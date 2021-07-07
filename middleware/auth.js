@@ -21,17 +21,14 @@ export default async function ({ store, req, res, route, redirect }) {
         if (!user) redirect('/login')
     }
 
-    if (route.path.match('/')) {
-        if (user && user.role.type == 'admin') {
-            redirect('/admin')
-        }
-    }
-
-    if (route.path.match(adminRoute)) {
+    if (route.path.match('/admin')) {
         if (user && user.role.type !== 'admin') {
             redirect('/')
         }
     }
+
+
+
 
 
     if (route.path.match(authRoute)) {
