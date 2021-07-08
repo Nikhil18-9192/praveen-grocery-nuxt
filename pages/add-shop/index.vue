@@ -1,16 +1,23 @@
 <template>
   <div id="new-shop">
+    <AddTagModal v-if="tagModal" @dismiss="dismiss" />
     <div class="heading">
       <p>Tap on map to drop a marker</p>
     </div>
     <div id="map"></div>
     <div class="modal">
-      <AddShopModal :lat="lattitude" :lng="longitude" />
+      <AddShopModal
+        :lat="lattitude"
+        :lng="longitude"
+        :tags="tags"
+        @openModal="openModal"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import Cookies from 'js-cookie'
 export default {
   name: 'AddShopPage',
 
@@ -25,9 +32,12 @@ export default {
       lattitude: false,
       longitude: false,
       image: '/marker.svg',
+      tags: [],
+      tagModal: false,
     }
   },
   mounted() {
+    this.fetchTags()
     this.map = new google.maps.Map(document.getElementById('map'), {
       center: this.center,
       zoom: 12,
@@ -52,6 +62,18 @@ export default {
         map: this.map,
         icon: this.image,
       })
+    },
+    async fetchTags() {
+      const jwt = Cookies.get('jwt')
+      this.$axios.setToken(jwt, 'bearer')
+      this.tags = await this.$axios.$get('/tags')
+    },
+    openModal() {
+      this.tagModal = true
+    },
+    dismiss(tag) {
+      this.tagModal = false
+      this.tags.push(tag)
     },
   },
   computed: {

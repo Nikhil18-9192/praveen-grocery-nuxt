@@ -1,6 +1,5 @@
 <template>
-  <div id="home-page">
-    <!-- <InputSearch v-model="shops" @paginate="paginate" /> -->
+  <div id="tag-list">
     <List class="list" :shops="shops" />
     <div v-if="shops && shops.length" class="pagi-info">
       <Pagination
@@ -19,9 +18,8 @@
 <script>
 import Cookies from 'js-cookie'
 import Pagination from 'vue-pagination-2'
-
 export default {
-  name: 'HomePage',
+  name: 'tagListPage',
   components: {
     Pagination,
   },
@@ -40,39 +38,33 @@ export default {
     }
   },
   mounted() {
-    this.userId = this.$store.state.user.id
-    if (this.$store.state.user.role.type == 'admin') {
-      return this.$router.push('/admin')
-    }
-    const jwt = Cookies.get('jwt')
-    if (!jwt) {
-      return this.$router.push('/login')
-    }
-    this.initialFetch(jwt)
+    this.fetchShop()
   },
   methods: {
+    async fetchShop() {
+      const tagId = this.$route.params.id
+      const jwt = Cookies.get('jwt')
+      this.$axios.setToken(jwt, 'bearer')
+      this.$store.commit('SET_LOADING')
+      this.shops = await this.$axios.$get(
+        `/shops?_where[tag.id]=${tagId}&_limit=${this.limit}&_start=${this.start}&_sort=created_at:desc`
+      )
+      this.totalCount = await this.$axios.$get(
+        `/shops/count?_where[tag.id]=${tagId}`
+      )
+      this.$store.commit('SET_LOADING')
+    },
     async paginate() {
+      const tagId = this.$route.params.id
       this.start = (this.page - 1) * this.perPage
       const jwt = Cookies.get('jwt')
       this.$axios.setToken(jwt, 'bearer')
       this.$store.commit('SET_LOADING')
       const shops = await this.$axios.$get(
-        `/shops?_start=${this.start}&_limit=${this.limit}&_where[user.id]=${this.userId}&_sort=created_at:desc`
+        `/shops?_where[tag.id]=${tagId}&_limit=${this.limit}&_start=${this.start}&_sort=created_at:desc`
       )
 
       this.shops = shops
-      this.$store.commit('SET_LOADING')
-    },
-    async initialFetch(jwt) {
-      this.$axios.setToken(jwt, 'bearer')
-      this.$store.commit('SET_LOADING')
-      this.shops = await this.$axios.$get(
-        `/shops?_start=${this.start}&_limit=${this.limit}&_where[user.id]=${this.userId}&_sort=created_at:desc`
-      )
-
-      this.totalCount = await this.$axios.$get(
-        `/shops/count?_where[user.id]=${this.userId}`
-      )
       this.$store.commit('SET_LOADING')
     },
   },
@@ -80,17 +72,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#home-page {
+#tag-list {
   position: relative;
   width: 100%;
   height: 100%;
   padding: 90px 20px 0 20px;
-
-  .empty-msg {
-    text-align: center;
-    font-weight: 300;
-    color: #b1b1b1;
-  }
   .pagi-info {
     display: flex;
     align-items: center;

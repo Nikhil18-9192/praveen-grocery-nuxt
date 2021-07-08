@@ -4,9 +4,17 @@
       class="shop"
       v-for="(item, i) in shops"
       :key="i"
-      @click="openMap(item)"
+      @click.stop="openMap(item)"
     >
       <h4>{{ item.name }}</h4>
+      <button
+        class="tag"
+        v-if="$route.path == '/admin'"
+        @click.stop="route(item.tag.id)"
+      >
+        {{ item.tag ? item.tag.name : '' }}
+      </button>
+
       <p class="phone">
         <a :href="'tel:+91' + item.mobile">+91 {{ item.mobile }}</a>
       </p>
@@ -22,10 +30,16 @@ export default {
   data() {
     return {}
   },
+
   methods: {
     openMap(shop) {
       this.$store.commit('SET_SHOP', shop)
       this.$router.push(`/map/${shop.name}`)
+    },
+    route(id) {
+      if (id) {
+        this.$router.push(`/admin/tag/${id}`)
+      }
     },
   },
 }
@@ -48,6 +62,7 @@ export default {
     background: #888;
   }
   .shop {
+    position: relative;
     padding: 15px 0;
     border-bottom: 1px solid #dddddd;
     h4 {
@@ -56,6 +71,19 @@ export default {
       line-height: 21px;
       margin-bottom: 8px;
       text-transform: capitalize;
+    }
+    .tag {
+      background: transparent;
+      border: none;
+      position: absolute;
+      right: 5px;
+      top: 10px;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 16px;
+      color: $primaryColor;
+      cursor: pointer;
+      z-index: 100;
     }
     a {
       text-decoration: none;

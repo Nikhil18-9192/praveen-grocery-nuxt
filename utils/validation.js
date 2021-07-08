@@ -26,6 +26,7 @@ const formEditValidation = (data) => {
             .pattern(phoneExp),
         owner: Joi.string().min(3).max(100).label('owner').required(),
         address: Joi.string().min(3).max(250).label('Address').required(),
+
     }).required()
 
     return formSchema.validate(data)
