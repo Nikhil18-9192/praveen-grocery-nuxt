@@ -73,7 +73,9 @@ export default {
     },
     dismiss(tag) {
       this.tagModal = false
-      this.tags.push(tag)
+      if (tag) {
+        this.tags.push(tag)
+      }
     },
   },
   computed: {

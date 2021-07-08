@@ -7,11 +7,7 @@
       @click.stop="openMap(item)"
     >
       <h4>{{ item.name }}</h4>
-      <button
-        class="tag"
-        v-if="$route.path == '/admin'"
-        @click.stop="route(item.tag.id)"
-      >
+      <button class="tag" @click.stop="route(item.tag.id)">
         {{ item.tag ? item.tag.name : '' }}
       </button>
 

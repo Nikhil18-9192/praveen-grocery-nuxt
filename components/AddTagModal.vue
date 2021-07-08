@@ -13,6 +13,7 @@
 
 <script>
 import Cookies from 'js-cookie'
+
 export default {
   name: 'AddTagModal',
   data() {
@@ -25,6 +26,7 @@ export default {
     async save() {
       this.loading = true
       const jwt = await Cookies.get('jwt')
+
       try {
         const tag = await this.$axios.$post(
           '/tags',
@@ -113,6 +115,7 @@ export default {
       font-weight: 300;
       font-size: 12px;
       line-height: 14px;
+      text-transform: lowercase;
       &::placeholder {
         text-transform: capitalize;
       }
