@@ -20,6 +20,16 @@
         rows="10"
         placeholder="shop address"
       ></textarea>
+      <div class="select">
+        <label for="tags">Select Tag</label><br />
+        <select v-model="tag" id="tags" name="tags">
+          <option disabled value="Tap to select tag">Tap to select tag</option>
+          <option v-for="(tag, i) in tags" :key="i" :value="tag.id">
+            {{ tag.name }}
+          </option>
+        </select>
+      </div>
+      <!-- <p class="add-tag-btn" @click="openModal">Add new tag</p> -->
     </div>
     <div class="btn">
       <Button :loading="loading" @click.native="save">Save</Button>
@@ -41,14 +51,18 @@ export default {
       mobile: '',
       address: '',
       owner: '',
+      tag: 'Tap to select tag',
+      tags: [],
     }
   },
   mounted() {
+    this.fetchTags()
     if (this.shop) {
       this.name = this.shop.name
       this.mobile = this.shop.mobile
       this.address = this.shop.address
       this.owner = this.shop.owner
+      this.tag = this.shop.tag.id
     }
   },
   methods: {
@@ -76,6 +90,7 @@ export default {
             mobile: number,
             address: this.address,
             owner: this.owner,
+            tag: this.tag,
           },
           {
             headers: {
@@ -90,6 +105,11 @@ export default {
         this.$toast.error(error)
       }
     },
+    async fetchTags() {
+      const jwt = Cookies.get('jwt')
+      this.$axios.setToken(jwt, 'bearer')
+      this.tags = await this.$axios.$get('/tags')
+    },
   },
 }
 </script>
@@ -100,7 +120,7 @@ export default {
   bottom: 10px;
   left: 2%;
   height: 100%;
-  max-height: 435px;
+  max-height: 555px;
   width: 96%;
   max-width: 355px;
   background: #fff;
@@ -176,6 +196,46 @@ export default {
       &::placeholder {
         text-transform: capitalize;
       }
+    }
+    .select {
+      position: relative;
+      margin-top: 9px;
+      label {
+        font-style: normal;
+        font-weight: 300;
+        font-size: 12px;
+        line-height: 14px;
+      }
+      select {
+        position: relative;
+        margin-top: 10px;
+        width: 100%;
+        height: 45px;
+        background: #f5f5f5;
+        border-radius: 6px;
+        border: none;
+        margin-bottom: 15px;
+        outline: none;
+        padding: 15px;
+        font-weight: 300;
+        font-size: 12px;
+        line-height: 14px;
+        text-align-last: center;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        text-indent: 1px;
+        text-overflow: '';
+        color: #4f4f4f;
+      }
+    }
+    .add-tag-btn {
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 14px;
+      color: $primaryColor;
+      text-align: right;
+      text-transform: capitalize;
+      cursor: pointer;
     }
   }
   .btn {
